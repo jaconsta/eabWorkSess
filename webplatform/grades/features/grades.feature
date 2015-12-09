@@ -1,4 +1,5 @@
 Feature: Manage Students grades
+    Check all average grades
 
     Scenario: Wont find student Charles
         When I access the url "students/averagegrade/?from=Fall%202014&to=Summer%202015&student=Charles"
@@ -35,3 +36,15 @@ Feature: Manage Students grades
         When I access the url "students/averagegrade/?from=Fall 2015&to=Fall 2015&student=Marc"
         Then I expect response status 200
         And I expect the average grade 8.5
+
+    Scenario: Prefixed data
+         Given I have student in the database
+            | name    |
+            | Lettuce |
+        And This student Lettuce has this grades in the database
+            | course | semester    | grade |
+            | Math   | Fall 2015   | 1     |
+            | Biology| Spring 2015 | 5   |
+        When I access the url "students/averagegrade/?from=Fall 2015&to=Fall 2015&student=Lettuce"
+        Then I expect response status 200
+        And I expect the average grade 1

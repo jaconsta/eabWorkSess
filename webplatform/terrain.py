@@ -23,6 +23,11 @@ def create_database(server):
     DiscoverRunner.setup_test_environment(world.test_runner)
     world.create_db = DiscoverRunner.setup_databases(world.test_runner)
 
+
+@before.each_app
+def set_app_name(app):
+    world.app_name = app.__name__
+
 @after.runserver
 def flush_database(server):
     """

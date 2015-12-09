@@ -1,12 +1,13 @@
+import json
+
 from lettuce import *
 from lettuce.django import django_url
-from django.test.client import Client
 
+from django.test.client import Client
+from django.apps import apps
 from django.conf import settings
 from django.core.management.base import CommandError
 from django.core.management import call_command
-
-import json
 
 
 def load_fixture(fixture_name):
@@ -18,6 +19,52 @@ def set_browser():
     for fixture in ['students', 'semesters', 'courses', 'grades']:
         load_fixture(fixture)
 
+@step(r'I have (.*) in the database')
+def create_user(step, model_name):
+    """
+    Manual creation of the model
+    Generic creation
+    :param step:
+    :param user:
+    :return:
+    """
+    # Get app model
+    try:
+        Model = apps.get_model(world.app_name, model_name)
+    except LookupError as e:
+        assert False, 'Error loading model %s' % model_name
+        return
+
+    for row in step.hashes:
+        db_row = Model(**row)
+        db_row.save()
+
+
+@step(r'This (.*) (.*) has this (.*) in the database')
+def set_grades(step, user_model, user_name, grade_model):
+    """
+    Manual creation of the model
+    Custom creation
+    :param step:
+    :param user_model:
+    :param user_name:
+    :param grade_model:
+    :return:
+    """
+    # Get app model
+    try:
+        Model = apps.get_model(world.app_name, grade_model)
+    except LookupError as e:
+        assert False, 'Error loading model %s' % grade_model
+        return
+
+    for row in step.hashes:
+        student = apps.get_model(world.app_name, 'student').objects.get(name=user_name)
+        semester = apps.get_model(world.app_name, 'semester').objects.get(name=row['semester'])
+        course = apps.get_model(world.app_name, 'course').objects.get(name=row['course'])
+
+        grade = Model(student=student, semester=semester, course=course, grade=row['grade'] )
+        grade.save()
 
 
 @step(r'I access the url "(.*)"')
