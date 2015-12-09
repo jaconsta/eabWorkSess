@@ -21,35 +21,35 @@ def averageGrade(request):
     try:
         student = Student.objects.get(name=studentName)
     except ObjectDoesNotExist:
-        return  JsonResponse({
-        'status':400,
-        'message': 'Student doesnt exists.'
-        }, status=400)
+        return JsonResponse({
+            'status':400,
+            'message': 'Student doesnt exists.'
+            }, status=400)
     # Validate Semesters
     # From
     try:
         start = Semester.objects.get(name=semesterFrom).start_date
     except ObjectDoesNotExist:
-        return  JsonResponse({
-        'status':400,
-        'message': 'Start semester name doesnt exists.'
-        }, status=400)
+        return JsonResponse({
+            'status':400,
+            'message': 'Start semester name doesnt exists.'
+            }, status=400)
     # To
     try:
         end = Semester.objects.get(name=semesterTo).end_date
     except ObjectDoesNotExist:
-        return  JsonResponse({
-        'status':400,
-        'message': 'End semester name doesnt exists.'
-        }, status=400)
+        return JsonResponse({
+            'status':400,
+            'message': 'End semester name doesnt exists.'
+            }, status=400)
 
     grades = Grades.objects.filter(student=student, semester__start_date__gte=start, semester__end_date__lte=end)
 
     if len(grades) < 1:
-        return  JsonResponse({
-        'status':400,
-        'message': 'Student has no grades.'
-        }, status=400)
+        return JsonResponse({
+            'status':400,
+            'message': 'Student has no grades.'
+            }, status=400)
 
     averageGrade = sum(grades) / len(grades)
     return JsonResponse({
