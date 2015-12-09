@@ -19,26 +19,6 @@ def set_browser():
     for fixture in ['students', 'semesters', 'courses', 'grades']:
         load_fixture(fixture)
 
-@step(r'I have (.*) in the database')
-def create_user(step, model_name):
-    """
-    Manual creation of the model
-    Generic creation
-    :param step:
-    :param user:
-    :return:
-    """
-    # Get app model
-    try:
-        Model = apps.get_model(world.app_name, model_name)
-    except LookupError as e:
-        assert False, 'Error loading model %s' % model_name
-        return
-
-    for row in step.hashes:
-        db_row = Model(**row)
-        db_row.save()
-
 
 @step(r'This (.*) (.*) has this (.*) in the database')
 def set_grades(step, user_model, user_name, grade_model):
