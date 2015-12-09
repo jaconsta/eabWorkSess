@@ -15,6 +15,12 @@ Feature: Manage Students grades
         Then I expect response status 400
         And I expect content "End semester name doesnt exists."
 
+
+    Scenario: Julian has no grades
+        When I access the url "students/averagegrade/?from=Fall%202014&to=Spring%202015&student=Julian"
+        Then I expect response status 400
+        And I expect content "Student has no grades."
+
     Scenario: Grades for Phil who has only one grade
         When I access the url "students/averagegrade/?from=Fall%202014&to=Spring%202015&student=Phil"
         Then I expect response status 200
@@ -24,3 +30,8 @@ Feature: Manage Students grades
         When I access the url "students/averagegrade/?from=Fall%202014&to=Spring%202015&student=Javier"
         Then I expect response status 200
         And I expect the average grade 6
+
+    Scenario: Grades for Marc last semester
+        When I access the url "students/averagegrade/?from=Fall 2015&to=Fall 2015&student=Marc"
+        Then I expect response status 200
+        And I expect the average grade 8.5

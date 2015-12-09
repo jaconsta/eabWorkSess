@@ -47,7 +47,7 @@ def averageGrade(request):
 
     if len(grades) < 1:
         return JsonResponse({
-            'status':400,
+            'status': 400,
             'message': 'Student has no grades.'
             }, status=400)
 

@@ -42,10 +42,10 @@ def see_content(step, content):
         "Got %s" % message
 
 
-@step(r'I expect the average grade (\d+)')
+@step(r'I expect the average grade ([-+]?\d*\.\d+|\d+)')
 def see_status(step, grade):
     response = json.loads(world.res)
-    response_grade = response['average_grade']
+    response_grade = float(response['average_grade'])
 
-    assert response_grade == int(grade), \
+    assert response_grade == float(grade), \
         "Got %d" % response_grade

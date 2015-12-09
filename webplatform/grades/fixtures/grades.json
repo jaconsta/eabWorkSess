@@ -44,5 +44,41 @@
       "semester": 3,
       "grade": 10
     }
+  },{
+    "model": "grades.grades",
+    "pk": 6,
+    "fields": {
+      "student": 4,
+      "course": 1,
+      "semester": 2,
+      "grade": 2
+    }
+  },{
+    "model": "grades.grades",
+    "pk": 7,
+    "fields": {
+      "student": 4,
+      "course": 2,
+      "semester": 2,
+      "grade": 2
+    }
+  },{
+    "model": "grades.grades",
+    "pk": 8,
+    "fields": {
+      "student": 4,
+      "course": 3,
+      "semester": 4,
+      "grade": 9
+    }
+  },{
+    "model": "grades.grades",
+    "pk": 9,
+    "fields": {
+      "student": 4,
+      "course": 1,
+      "semester": 4,
+      "grade": 8
+    }
   }
 ]
