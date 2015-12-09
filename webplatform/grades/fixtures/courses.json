@@ -1,0 +1,22 @@
+[
+  {
+    "model": "grades.course",
+    "pk": 1,
+    "fields": {
+      "name": "Math"
+    }
+  },{
+    "model": "grades.course",
+    "pk": 2,
+    "fields": {
+      "name": "History"
+    }
+  },{
+    "model": "grades.course",
+    "pk": 3,
+    "fields": {
+      "name": "Biology"
+    }
+  }
+
+  ]

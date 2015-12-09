@@ -1,0 +1,48 @@
+[
+  {
+    "model": "grades.grades",
+    "pk": 1,
+    "fields": {
+      "student": 1,
+      "course": 1,
+      "semester": 2,
+      "grade": 1
+    }
+  },{
+    "model": "grades.grades",
+    "pk": 2,
+    "fields": {
+      "student": 3,
+      "course": 3,
+      "semester": 2,
+      "grade": 5
+    }
+  },{
+    "model": "grades.grades",
+    "pk": 3,
+    "fields": {
+      "student": 1,
+      "course": 2,
+      "semester": 2,
+      "grade": 3
+    }
+  },{
+    "model": "grades.grades",
+    "pk": 4,
+    "fields": {
+      "student": 1,
+      "course": 3,
+      "semester": 3,
+      "grade": 10
+    }
+  },{
+    "model": "grades.grades",
+    "pk": 5,
+    "fields": {
+      "student": 1,
+      "course": 1,
+      "semester": 3,
+      "grade": 10
+    }
+  }
+]

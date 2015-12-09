@@ -8,13 +8,17 @@ from django.core.management import call_command
 
 import json
 
+
+def load_fixture(fixture_name):
+    call_command('loaddata', fixture_name, interactive=False, verbosity=0)
+
 @before.all
 def set_browser():
     world.browser = Client()
-    call_command('loaddata', 'students', interactive=False, verbosity=0)
+    for fixture in ['students', 'semesters', 'courses', 'grades']:
+        load_fixture(fixture)
 
-def load_fixture(step, fixture_name):
-    call_command('loaddata', 'students', interactive=False, verbosity=0)
+
 
 @step(r'I access the url "(.*)"')
 def access_url(step, url):
@@ -28,3 +32,20 @@ def access_url(step, url):
 def see_status(step, status):
     assert world.status_code == int(status), \
         "Got %d" % world.status_code
+
+
+@step(r'I expect content "(.*)"')
+def see_content(step, content):
+    response = json.loads(world.res)
+    message = response['message']
+    assert message == content, \
+        "Got %s" % message
+
+
+@step(r'I expect the average grade (\d+)')
+def see_status(step, grade):
+    response = json.loads(world.res)
+    response_grade = response['average_grade']
+
+    assert response_grade == int(grade), \
+        "Got %d" % response_grade

@@ -6,7 +6,7 @@ from .models import Student, Course, Semester, Grades
 
 
 def sum(numb):
-    if len(numb) < 1:
+    if len(numb) <= 1:
         return numb[0].grade
     else:
         return numb[0].grade + sum(numb[1:])
@@ -43,13 +43,17 @@ def averageGrade(request):
         'message': 'End semester name doesnt exists.'
         }, status=400)
 
-    print(student, start, end)
     grades = Grades.objects.filter(student=student, semester__start_date__gte=start, semester__end_date__lte=end)
 
-    averageGrade = sum(grades)
-    print (averageGrade)
-    grades.grade
+    if len(grades) < 1:
+        return  JsonResponse({
+        'status':400,
+        'message': 'Student has no grades.'
+        }, status=400)
+
+    averageGrade = sum(grades) / len(grades)
     return JsonResponse({
         'status': 200,
-        'message': 'Working on it.'
+        'message': 'Got grade',
+        'average_grade': averageGrade
         })

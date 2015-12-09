@@ -1,0 +1,35 @@
+[
+  {
+    "model": "grades.semester",
+    "pk": 1,
+    "fields": {
+      "name": "Spring 2014",
+      "start_date": "2014-01-1",
+      "end_date": "2014-06-30"
+    }
+  },{
+    "model": "grades.semester",
+    "pk": 2,
+    "fields": {
+      "name": "Fall 2014",
+      "start_date": "2014-07-01",
+      "end_date": "2014-12-31"
+    }
+  },{
+    "model": "grades.semester",
+    "pk": 3,
+    "fields": {
+      "name": "Spring 2015",
+      "start_date": "2015-01-1",
+      "end_date": "2015-06-30"
+    }
+  },{
+    "model": "grades.semester",
+    "pk": 4,
+    "fields": {
+      "name": "Fall 2015",
+      "start_date": "2015-07-01",
+      "end_date": "2015-12-31"
+    }
+  }
+]

@@ -12,5 +12,12 @@
     "fields": {
       "name": "Julian"
     }
+  },
+  {
+    "model": "grades.student",
+    "pk": 3,
+    "fields": {
+      "name": "Phil"
+    }
   }
 ]

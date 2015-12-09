@@ -22,7 +22,6 @@ def create_database(server):
     world.test_runner = DiscoverRunner(interactive=False)
     DiscoverRunner.setup_test_environment(world.test_runner)
     world.create_db = DiscoverRunner.setup_databases(world.test_runner)
-    #call_command('migrate', interactive=False, verbosity=0)
 
 @after.runserver
 def flush_database(server):

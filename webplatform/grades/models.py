@@ -23,7 +23,7 @@ class Course(models.Model):
 class Semester(models.Model):
     name = models.CharField(max_length=250)
     start_date = models.DateField()
-    end_date =models.DateField()
+    end_date = models.DateField()
 
     def __str__(self):
         return 'Semester %s: From %s to %s' % (self.name, self.start_date, self.end_date)
